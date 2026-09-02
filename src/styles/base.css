@@ -2,11 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-/* MECÁNICA COMPARTIDA entre los 3 estilos — todo en términos de variables
-   CSS, para que cada tema (del-sur.css / fade.css / blanco.css) solo tenga
-   que redefinir --bg/--fg/--accent/--font-* y no repetir esta lógica.
-   Cada estilo agrega ADEMÁS su propio flourish puntual (título, hover
-   único) en su propio archivo — esto de acá es solo lo estructural. */
+/* MECÁNICA COMPARTIDA entre los 3 estilos — misma estructura que las demos
+   reales (Maccia / OG), escrita en términos de CSS custom properties para
+   que cada tema (nogal.css / vera.css / fade.css) solo redefina colores y
+   fuentes. Cada estilo agrega su propio flourish en su archivo. */
 
 html {
   scroll-behavior: smooth;
@@ -20,6 +19,11 @@ html, body {
   line-height: 1.5;
 }
 
+.font-sans {
+  font-family: var(--font-sans), system-ui, sans-serif;
+}
+
+/* Etiqueta chica sobre los títulos */
 .eyebrow {
   font-family: var(--font-sans), sans-serif;
   font-size: 11px;
@@ -29,12 +33,18 @@ html, body {
   color: var(--fg-muted);
 }
 
+/* Línea decorativa corta debajo de títulos */
 .rule {
   display: inline-block;
   width: 56px;
   height: 3px;
   background: var(--accent);
   margin-top: 1.25rem;
+}
+
+/* Una palabra del título en el acento — nunca el título entero. */
+.accent {
+  color: var(--accent);
 }
 
 /* CTAs ───────────────────────────────────────────────────────── */
@@ -62,6 +72,7 @@ html, body {
   filter: brightness(1.12);
 }
 
+/* Shine sweep — se anima la franja de luz del ::before, nunca el botón. */
 .cta-solid::before {
   content: "";
   position: absolute;
@@ -69,9 +80,9 @@ html, body {
   left: -75%;
   width: 50%;
   height: 100%;
-  background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  background: linear-gradient(120deg, transparent, var(--sweep), transparent);
   transform: skewX(-20deg);
-  transition: left 0.6s var(--ease-organic, ease);
+  transition: left 0.6s var(--ease-organic);
   pointer-events: none;
 }
 
@@ -97,17 +108,18 @@ html, body {
 }
 
 .cta-outline:hover {
-  border-color: var(--fg);
-  background: var(--fg);
-  color: var(--bg);
+  border-color: var(--accent);
+  color: var(--accent);
 }
 
 .cta-link {
+  display: inline-block;
   font-family: var(--font-sans), sans-serif;
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.05em;
   color: var(--fg);
+  padding-top: 4px;
   padding-bottom: 4px;
   border-bottom: 1px solid var(--hairline-strong);
   transition: all 0.25s ease;
@@ -118,72 +130,20 @@ html, body {
   color: var(--accent);
 }
 
-/* CARDS ──────────────────────────────────────────────────────── */
-
-.card {
-  background: var(--card-bg);
-  border: 1px solid var(--hairline);
-  transition: border-color 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease, transform 0.25s ease;
-}
-
-.card:hover {
-  border-color: var(--accent);
-  box-shadow: 0 0 0 1px var(--accent), 0 0 28px var(--accent-glow);
-}
-
-.hairline { border-color: var(--hairline); }
-
-/* FOTOS — sin deformar nunca: capa de fondo desenfocada rellena los
-   bordes, la foto real va siempre completa y sin recortar encima. */
-.photo-frame {
-  position: relative;
-  overflow: hidden;
-  background: var(--card-bg);
-}
-
-.photo-frame::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, transparent 45%, var(--bg) 130%);
-  pointer-events: none;
-  transition: opacity 0.7s ease;
-  z-index: 1;
-  opacity: 0.55;
-}
-
-.photo-bg {
-  filter: brightness(0.92) saturate(1);
-  transition: filter 0.7s ease;
-}
-
-.photo-fg {
-  filter: brightness(0.96) contrast(1.02);
-  transition: filter 0.7s var(--ease-organic, ease), transform 0.9s var(--ease-organic, ease);
-}
-
-.photo-frame:hover .photo-bg {
-  filter: brightness(1) saturate(1.05);
-}
-
-.photo-frame:hover .photo-fg {
-  filter: brightness(1) contrast(1);
-  transform: scale(1.03);
-}
-
-.photo-frame:hover::after {
-  opacity: 0.2;
-}
-
-.divider {
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--hairline-strong), transparent);
-}
-
-/* NAV — línea que se dibuja al pasar el cursor (misma mecánica que
-   Maccia/OG, ver bitácora en memoria [[product-web-landing]]). */
+/* NAV — línea que se dibuja al pasar el cursor, a la altura del borde
+   inferior del header. */
 .nav-link {
   position: relative;
+  font-size: 11px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--fg-muted);
+  transition: color 0.25s ease;
+}
+
+.nav-link:hover {
+  color: var(--accent);
 }
 
 .nav-link::after {
@@ -195,7 +155,7 @@ html, body {
   height: 2px;
   background: var(--accent);
   transform: scaleX(0);
-  transition: transform 0.3s var(--ease-organic, ease);
+  transition: transform 0.3s var(--ease-organic);
 }
 
 .nav-link:hover::after,
@@ -203,8 +163,67 @@ html, body {
   transform: scaleX(1);
 }
 
-/* Reveal en scroll — visible por defecto: si el JS no corre o el
-   observer no dispara, el contenido se ve igual. */
+/* CARDS ──────────────────────────────────────────────────────── */
+
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--hairline);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
+}
+
+.card:hover {
+  border-color: var(--accent);
+  background: var(--card-bg-hover);
+  box-shadow: 0 0 0 1px var(--accent), 0 0 28px var(--accent-glow);
+}
+
+.hairline { border-color: var(--hairline); }
+
+/* FOTOS — por defecto recortan para llenar el marco (fit="cover"), sin
+   relleno desenfocado. El degradado de abajo une la foto con la card. */
+.photo-frame {
+  position: relative;
+  overflow: hidden;
+  background: var(--card-bg);
+}
+
+.photo-frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 55%, var(--photo-veil) 100%);
+  pointer-events: none;
+  transition: opacity 0.7s ease;
+  z-index: 1;
+  opacity: 0.85;
+}
+
+.photo-fg {
+  filter: var(--photo-filter);
+  transition: filter 0.7s var(--ease-organic), transform 0.9s var(--ease-organic);
+}
+
+.photo-bg {
+  filter: var(--photo-filter);
+}
+
+.photo-frame:hover .photo-fg {
+  filter: var(--photo-filter-hover);
+  transform: scale(1.04);
+}
+
+.photo-frame:hover::after {
+  opacity: 0.4;
+}
+
+/* Divider de sección */
+.divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--hairline-strong), transparent);
+}
+
+/* Reveal en scroll — visible por defecto: si el JS no corre o el observer
+   no dispara, el contenido se ve igual. */
 .reveal.armed {
   opacity: 0;
   transform: translateY(24px);
@@ -212,7 +231,7 @@ html, body {
 .reveal.armed.in {
   opacity: 1;
   transform: translateY(0);
-  transition: opacity 0.9s ease, transform 1s var(--ease-organic, ease);
+  transition: opacity 0.9s ease, transform 1s var(--ease-organic);
 }
 
 ::selection {
@@ -221,22 +240,10 @@ html, body {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
+  html { scroll-behavior: auto; }
   .reveal.armed,
-  .reveal.armed.in {
-    transition: none;
-    transform: none;
-  }
-  .photo-bg,
-  .photo-fg {
-    transition: none;
-  }
-  .photo-frame:hover .photo-fg {
-    transform: none;
-  }
-  .cta-solid::before {
-    transition: none;
-  }
+  .reveal.armed.in { transition: none; transform: none; }
+  .photo-fg { transition: none; }
+  .photo-frame:hover .photo-fg { transform: none; }
+  .cta-solid::before { transition: none; }
 }

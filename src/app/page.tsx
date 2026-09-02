@@ -1,70 +1,83 @@
+import Image from "next/image";
+import { autorWhatsApp } from "@/lib/autor";
+
 const ESTILOS = [
   {
-    href: "/del-sur",
-    nombre: "Barbería del Sur",
-    etiqueta: "Premium clásico",
-    desc: "Serif elegante, crema y vino — la barbería de toda la vida.",
-    bg: "#F7F1E6",
-    fg: "#2A1F17",
-    accent: "#7A2331",
+    href: "/nogal",
+    nombre: "Nogal",
+    rubro: "Peluquería & barbería",
+    etiqueta: "Oscuro y dorado",
+    desc: "Foto de fondo, serif con carácter y un dorado que aparece solo donde importa.",
+    img: "/fotos/nogal/hero-bg.jpg",
+    filtro: "brightness(0.55) saturate(0.95)",
+    accent: "#C9A227",
+  },
+  {
+    href: "/vera",
+    nombre: "Vera",
+    rubro: "Salón de belleza",
+    etiqueta: "Blanco y negro elegante",
+    desc: "Mucho aire, serif fina y fotos en blanco y negro que recuperan color al pasar el cursor.",
+    img: "/fotos/vera/hero-bg.jpg",
+    filtro: "grayscale(1) brightness(1.05)",
+    accent: "#FFFFFF",
   },
   {
     href: "/fade",
-    nombre: "Estudio Fade",
-    etiqueta: "Urbano bold",
-    desc: "Blanco y negro puro, tipografía condensada, un rojo cortante.",
-    bg: "#0A0A0A",
-    fg: "#FAFAFA",
-    accent: "#E5342A",
-  },
-  {
-    href: "/blanco",
-    nombre: "Estudio Blanco",
-    etiqueta: "Minimalista claro",
-    desc: "Mucho aire, tipografía fina, un verde salvia apagado.",
-    bg: "#FBFBF9",
-    fg: "#232722",
-    accent: "#6F8C61",
+    nombre: "Fade Club",
+    rubro: "Barbería urbana",
+    etiqueta: "Negro con líneas",
+    desc: "Tipografía condensada, líneas diagonales en movimiento y monocromo puro.",
+    img: "/fotos/fade/hero-bg.jpg",
+    filtro: "grayscale(1) brightness(0.5) contrast(1.15)",
+    accent: "#FAFAFA",
   },
 ];
 
 export default function Gallery() {
   return (
     <main className="min-h-screen flex flex-col">
-      <div className="max-w-5xl mx-auto px-6 py-24 flex-1 w-full">
+      <div className="max-w-6xl mx-auto px-6 py-24 flex-1 w-full">
         <p className="text-xs font-semibold tracking-[0.28em] uppercase text-white/50">
-          Estudio IT PyMEs — ejemplos
+          Estudio IT PyMEs — ejemplos de diseño
         </p>
-        <h1 className="mt-4 text-4xl sm:text-5xl font-semibold tracking-tight max-w-2xl">
-          3 estilos distintos para la misma idea: una peluquería.
+        <h1 className="mt-4 text-4xl sm:text-5xl font-semibold tracking-tight max-w-3xl leading-tight">
+          Tres estilos para el mismo rubro.
         </h1>
         <p className="mt-6 text-white/60 max-w-xl leading-relaxed">
-          No son negocios reales — son ejemplos de dirección visual para elegir
-          antes de construir tu página a medida. Elegí uno para verlo completo.
+          Ninguno es un negocio real: son ejemplos completos, con servicios,
+          equipo, academia y mapa, para elegir dirección visual antes de
+          construir tu página a medida. Entrá a cualquiera.
         </p>
 
-        <div className="mt-16 grid sm:grid-cols-3 gap-6">
+        <div className="mt-16 grid md:grid-cols-3 gap-6">
           {ESTILOS.map((e) => (
             <a key={e.href} href={e.href} className="gallery-card group block">
-              <div
-                className="gallery-swatch aspect-[4/5] flex flex-col justify-between p-6"
-                style={{ background: e.bg, color: e.fg }}
-              >
-                <div className="flex gap-2">
-                  <span className="w-4 h-4 rounded-full" style={{ background: e.accent }} />
-                  <span className="w-4 h-4 rounded-full border" style={{ borderColor: e.fg, opacity: 0.3 }} />
-                </div>
-                <div>
-                  <p className="text-[10px] font-bold tracking-[0.2em] uppercase opacity-60">
+              <div className="gallery-swatch relative aspect-[4/5]">
+                <Image
+                  src={e.img}
+                  alt=""
+                  fill
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                  className="object-cover"
+                  style={{ filter: e.filtro }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent" />
+                <div className="absolute inset-x-0 bottom-0 p-6">
+                  <span
+                    className="inline-block text-[10px] font-bold tracking-[0.2em] uppercase px-2 py-1"
+                    style={{ background: e.accent, color: e.accent === "#C9A227" ? "#14100C" : "#111" }}
+                  >
                     {e.etiqueta}
-                  </p>
-                  <p className="mt-2 text-2xl font-semibold leading-tight">{e.nombre}</p>
+                  </span>
+                  <p className="mt-3 text-3xl font-semibold text-white leading-tight">{e.nombre}</p>
+                  <p className="text-sm text-white/60">{e.rubro}</p>
                 </div>
               </div>
               <div className="p-5 bg-white/5">
                 <p className="text-sm text-white/60 leading-relaxed">{e.desc}</p>
                 <span className="mt-4 inline-block text-xs font-bold tracking-widest uppercase text-white group-hover:opacity-60 transition-opacity">
-                  Ver estilo →
+                  Ver la página completa →
                 </span>
               </div>
             </a>
@@ -74,15 +87,13 @@ export default function Gallery() {
 
       <footer className="border-t border-white/10 py-8">
         <p className="text-center text-[11px] text-white/40 max-w-2xl mx-auto leading-relaxed px-6">
-          Página de ejemplo — ninguno de los 3 estilos corresponde a un negocio real.
-          Fotos de banco gratuito (Unsplash/Pexels).
+          Los tres locales son ficticios: nombres, textos, equipo y direcciones
+          son ilustrativos. Fotos de banco gratuito (Unsplash).
         </p>
         <p className="text-center text-[10px] mt-3 tracking-widest uppercase text-white/40">
-          Hecha por{" "}
+          Hecho por{" "}
           <a
-            href={`https://wa.me/5491133905237?text=${encodeURIComponent(
-              "Hola Joaquín! Vi los 3 estilos de ejemplo de peluquería"
-            )}`}
+            href={autorWhatsApp("la galería de estilos")}
             target="_blank"
             rel="noopener"
             className="underline underline-offset-4 hover:text-white transition-colors"

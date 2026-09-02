@@ -1,12 +1,11 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Inter } from "next/font/google";
+import { Fraunces, Inter } from "next/font/google";
 import "@/styles/base.css";
-import "@/styles/del-sur.css";
+import "@/styles/nogal.css";
 
-const display = Playfair_Display({
+const display = Fraunces({
   subsets: ["latin"],
-  weight: ["600", "700"],
-  style: ["normal", "italic"],
+  weight: ["400", "600"],
   variable: "--font-display",
   display: "swap",
 });
@@ -19,11 +18,11 @@ const sans = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Barbería del Sur · Ejemplo de estilo — Estudio IT PyMEs",
-  description: "Ejemplo de diseño premium clásico para una barbería. No es un negocio real.",
+  title: "Nogal Peluquería · Ejemplo de estilo — Estudio IT PyMEs",
+  description: "Ejemplo de diseño oscuro y dorado para una peluquería o barbería. No es un negocio real.",
   robots: { index: false, follow: false },
 };
 
-export default function DelSurLayout({ children }: { children: React.ReactNode }) {
+export default function NogalLayout({ children }: { children: React.ReactNode }) {
   return <div className={`${display.variable} ${sans.variable} contents`}>{children}</div>;
 }

@@ -1,0 +1,46 @@
+/* VERA — blanco y negro elegante, tipo salón de belleza. Base clara,
+   tipografía serif fina, acento negro puro sobre off-white tintado a
+   rosa muy leve. La elegancia viene del aire y del contraste, no del color. */
+
+:root {
+  color-scheme: light;
+  --ease-organic: cubic-bezier(0.25, 1, 0.5, 1);
+
+  --bg: #FAF8F6;
+  --bg-alt: #F1EDE9;
+  --fg: #1A1715;
+  --fg-muted: #6E6560;
+
+  --accent: #1A1715;
+  --accent-soft: #4A423E;
+  --accent-fg: #FAF8F6;
+  --accent-glow: rgba(26, 23, 21, 0.12);
+  --sweep: rgba(255, 255, 255, 0.4);
+
+  --card-bg: #FFFFFF;
+  --card-bg-hover: #FFFFFF;
+  --hairline: rgba(26, 23, 21, 0.12);
+  --hairline-strong: rgba(26, 23, 21, 0.3);
+
+  --photo-veil: rgba(26, 23, 21, 0.55);
+  --photo-filter: grayscale(1) brightness(1.02) contrast(1.02);
+  --photo-filter-hover: grayscale(0) brightness(1) contrast(1);
+}
+
+.font-display {
+  font-family: var(--font-display), Georgia, serif;
+  font-weight: 300;
+  letter-spacing: 0.005em;
+  line-height: 1.1;
+}
+
+/* Flourish propio: la regla decorativa es un hairline largo y fino, no una
+   barra gruesa — coherente con la contención del estilo. */
+.rule {
+  width: 90px;
+  height: 1px;
+  background: var(--fg);
+}
+
+/* Las fotos entran en blanco y negro y recuperan color al pasar el cursor:
+   el color aparece como recompensa, no como estado de base. */

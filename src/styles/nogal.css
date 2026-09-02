@@ -1,0 +1,49 @@
+/* NOGAL — oscuro + dorado, con foto de fondo en el hero.
+   Neutros tintados hacia el marrón cálido (nunca negro puro), un solo
+   acento dorado. La misma familia de Maccia, con su propia paleta. */
+
+:root {
+  color-scheme: dark;
+  --ease-organic: cubic-bezier(0.25, 1, 0.5, 1);
+
+  --bg: #0C0A08;
+  --bg-alt: #14100C;
+  --fg: #F5F0E8;
+  --fg-muted: #A99C8B;
+
+  --accent: #C9A227;
+  --accent-soft: #E2C55E;
+  --accent-fg: #14100C;
+  --accent-glow: rgba(201, 162, 39, 0.18);
+  --sweep: rgba(255, 255, 255, 0.35);
+
+  --card-bg: #16120D;
+  --card-bg-hover: #1B1610;
+  --hairline: rgba(245, 240, 232, 0.09);
+  --hairline-strong: rgba(245, 240, 232, 0.28);
+
+  --photo-veil: rgba(12, 10, 8, 0.9);
+  --photo-filter: brightness(0.88) saturate(0.95);
+  --photo-filter-hover: brightness(1) saturate(1.05);
+}
+
+.font-display {
+  font-family: var(--font-display), Georgia, serif;
+  font-weight: 400;
+  letter-spacing: -0.005em;
+  line-height: 1.05;
+}
+
+/* Halo dorado difuso — se usa detrás del cierre, mismo recurso que Maccia. */
+.glow-accent {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 700px;
+  height: 700px;
+  border-radius: 9999px;
+  background: rgba(201, 162, 39, 0.10);
+  filter: blur(120px);
+  pointer-events: none;
+}

@@ -6,6 +6,8 @@ export function FramedPhoto({
   aspect = "aspect-[4/5]",
   className = "",
   priority = false,
+  fit = "cover",
+  position = "center",
   children,
 }: {
   src: string;
@@ -13,8 +15,30 @@ export function FramedPhoto({
   aspect?: string;
   className?: string;
   priority?: boolean;
+  /** "cover" (default): recorta/zoomea para llenar el marco parejo, sin relleno.
+   *  "contain": nunca recorta, rellena los bordes con fondo desenfocado. */
+  fit?: "contain" | "cover";
+  /** object-position para "cover" — qué parte de la foto proteger del recorte. */
+  position?: string;
   children?: React.ReactNode;
 }) {
+  if (fit === "cover") {
+    return (
+      <div className={`photo-frame border hairline ${aspect} ${className}`}>
+        <Image
+          src={src}
+          alt={alt}
+          fill
+          priority={priority}
+          sizes="(max-width: 1024px) 100vw, 50vw"
+          className="photo-fg object-cover"
+          style={{ objectPosition: position }}
+        />
+        {children}
+      </div>
+    );
+  }
+
   return (
     <div className={`photo-frame border hairline ${aspect} ${className}`}>
       <Image
