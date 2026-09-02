@@ -96,7 +96,7 @@ export default function Gallery() {
             href={autorWhatsApp("la galería de estilos")}
             target="_blank"
             rel="noopener"
-            className="underline underline-offset-4 hover:text-white transition-colors"
+            className="inline-block py-1.5 underline underline-offset-4 hover:text-white transition-colors"
           >
             Joaquín Rao
           </a>
