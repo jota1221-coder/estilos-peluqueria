@@ -18,6 +18,13 @@ const EQUIPO = [
   { nombre: "Sofía", rol: "Colorista · balayage y color creativo", img: "/fotos/vera/equipo-2.jpg", pos: "center 25%" },
 ];
 
+// Reseñas de ejemplo — textos genéricos, no citas reales de un negocio.
+const RESEÑAS = [
+  { nombre: "Valentina G.", texto: "Excelente atención, el resultado siempre queda como lo pedí." },
+  { nombre: "Martina L.", texto: "Un lugar prolijo y con buena onda. Se nota el cuidado en cada detalle." },
+  { nombre: "Agustina P.", texto: "Volví varias veces y siempre con la misma calidad. Muy recomendable." },
+];
+
 export default function Vera() {
   return (
     <main>
@@ -31,6 +38,7 @@ export default function Vera() {
             <a href="#servicios" className="nav-link flex items-center">Servicios</a>
             <a href="#equipo" className="nav-link flex items-center">Equipo</a>
             <a href="#academia" className="nav-link flex items-center">Escuela</a>
+            <a href="#resenas" className="nav-link flex items-center">Reseñas</a>
             <a href="#ubicacion" className="nav-link flex items-center">Ubicación</a>
           </div>
           <a href="#ubicacion" className="cta-solid !py-3 !px-6 !text-xs">Reservar turno</a>
@@ -154,11 +162,40 @@ export default function Vera() {
 
       <div className="divider max-w-7xl mx-auto" />
 
+      {/* RESEÑAS */}
+      <section id="resenas" className="py-28">
+        <div className="max-w-7xl mx-auto px-6 lg:px-10">
+          <Reveal>
+            <p className="eyebrow mb-4">04 — Reseñas</p>
+            <h2 className="font-display text-4xl lg:text-6xl">
+              Lo que dicen <span className="italic">en Google</span>.
+            </h2>
+            <div className="flex items-center gap-3 mt-6">
+              <span className="text-2xl tracking-widest">★★★★★</span>
+              <span className="text-sm" style={{ color: "var(--fg-muted)" }}>4.9 · reseñas de ejemplo</span>
+            </div>
+          </Reveal>
+          <div className="mt-12 grid md:grid-cols-3 gap-5">
+            {RESEÑAS.map((r, i) => (
+              <Reveal key={r.nombre} delay={i * 80}>
+                <div className="card p-7 h-full flex flex-col">
+                  <span className="tracking-widest">★★★★★</span>
+                  <p className="mt-4 italic leading-relaxed flex-1 font-display text-lg">&ldquo;{r.texto}&rdquo;</p>
+                  <p className="mt-5 eyebrow">{r.nombre}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <div className="divider max-w-7xl mx-auto" />
+
       {/* UBICACIÓN */}
       <section id="ubicacion" className="py-28" style={{ background: "var(--bg-alt)" }}>
         <div className="max-w-7xl mx-auto px-6 lg:px-10 grid lg:grid-cols-12 gap-14 items-center">
           <Reveal className="lg:col-span-5">
-            <p className="eyebrow mb-4">04 — Ubicación</p>
+            <p className="eyebrow mb-4">05 — Ubicación</p>
             <h2 className="font-display text-4xl lg:text-6xl leading-tight">
               Vicente <span className="italic">López</span>.
             </h2>
@@ -198,7 +235,7 @@ export default function Vera() {
       {/* CIERRE */}
       <section className="py-32">
         <Reveal className="max-w-2xl mx-auto px-6 text-center">
-          <p className="eyebrow mb-6">05 — Este estilo</p>
+          <p className="eyebrow mb-6">06 — Este estilo</p>
           <h2 className="font-display text-5xl lg:text-7xl leading-tight">
             ¿Lo querés <span className="italic">para tu salón</span>?
           </h2>

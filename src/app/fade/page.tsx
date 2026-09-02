@@ -18,6 +18,13 @@ const EQUIPO = [
   { nombre: "Tomás", rol: "Barbero · clásico y barba", img: "/fotos/fade/equipo-2.jpg", pos: "center 25%" },
 ];
 
+// Reseñas de ejemplo — textos genéricos, no citas reales de un negocio.
+const RESEÑAS = [
+  { nombre: "Franco D.", texto: "Los pibes son unos genios, siempre salgo con el corte que pedí." },
+  { nombre: "Ezequiel V.", texto: "Buena onda y buen ambiente. Se nota que les gusta lo que hacen." },
+  { nombre: "Lucas F.", texto: "Rápido, prolijo y sin vueltas. Como tiene que ser." },
+];
+
 export default function Fade() {
   return (
     <main>
@@ -31,6 +38,7 @@ export default function Fade() {
             <a href="#servicios" className="nav-link flex items-center">Servicios</a>
             <a href="#equipo" className="nav-link flex items-center">Equipo</a>
             <a href="#academia" className="nav-link flex items-center">Academia</a>
+            <a href="#resenas" className="nav-link flex items-center">Reseñas</a>
             <a href="#ubicacion" className="nav-link flex items-center">Ubicación</a>
           </div>
           <a href="#ubicacion" className="cta-solid !py-3 !px-6 !text-xs">Reservar turno</a>
@@ -156,11 +164,38 @@ export default function Fade() {
 
       <div className="divider max-w-7xl mx-auto" />
 
+      {/* RESEÑAS */}
+      <section id="resenas" className="py-28">
+        <div className="max-w-7xl mx-auto px-6 lg:px-10">
+          <Reveal>
+            <p className="eyebrow mb-4">04 — RESEÑAS</p>
+            <h2 className="font-display text-4xl lg:text-6xl">LO QUE DICEN</h2>
+            <div className="flex items-center gap-3 mt-6">
+              <span className="text-2xl tracking-widest">★★★★★</span>
+              <span className="text-sm" style={{ color: "var(--fg-muted)" }}>4.9 · reseñas de ejemplo</span>
+            </div>
+          </Reveal>
+          <div className="mt-12 grid md:grid-cols-3 gap-5">
+            {RESEÑAS.map((r, i) => (
+              <Reveal key={r.nombre} delay={i * 80}>
+                <div className="card p-7 h-full flex flex-col">
+                  <span className="tracking-widest">★★★★★</span>
+                  <p className="mt-4 italic leading-relaxed flex-1">&ldquo;{r.texto}&rdquo;</p>
+                  <p className="mt-5 eyebrow">{r.nombre}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <div className="divider max-w-7xl mx-auto" />
+
       {/* UBICACIÓN */}
       <section id="ubicacion" className="py-28" style={{ background: "var(--bg-alt)" }}>
         <div className="max-w-7xl mx-auto px-6 lg:px-10 grid lg:grid-cols-12 gap-14 items-center">
           <Reveal className="lg:col-span-5">
-            <p className="eyebrow mb-4">04 — Ubicación</p>
+            <p className="eyebrow mb-4">05 — Ubicación</p>
             <h2 className="font-display text-4xl lg:text-6xl leading-tight">OLIVOS</h2>
             <span className="rule" />
             <ul className="mt-10 space-y-6">
@@ -199,7 +234,7 @@ export default function Fade() {
       <section className="py-32 relative overflow-hidden">
         <div className="hero-pattern" aria-hidden />
         <Reveal className="relative max-w-2xl mx-auto px-6 text-center">
-          <p className="eyebrow mb-6">05 — Este estilo</p>
+          <p className="eyebrow mb-6">06 — Este estilo</p>
           <h2 className="font-display text-5xl lg:text-7xl leading-tight">
             ¿LO QUERÉS PARA<br />TU LOCAL?
           </h2>
