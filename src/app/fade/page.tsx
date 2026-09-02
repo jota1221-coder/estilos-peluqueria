@@ -126,7 +126,7 @@ export default function Fade() {
             <p className="eyebrow mb-4">02 — Equipo</p>
             <h2 className="font-display text-4xl lg:text-6xl">LA FAMILIA</h2>
           </Reveal>
-          <div className="mt-14 grid sm:grid-cols-2 gap-8 max-w-3xl">
+          <div className="mt-14 grid sm:grid-cols-2 gap-8 max-w-3xl mx-auto">
             {EQUIPO.map((m, i) => (
               <Reveal key={m.nombre} delay={i * 100}>
                 <FramedPhoto src={m.img} alt={m.nombre} aspect="aspect-[4/5]" position={m.pos} />
