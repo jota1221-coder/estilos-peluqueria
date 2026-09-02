@@ -1,0 +1,52 @@
+/* BLANCO — minimalista claro. Mucho aire, tipografía fina, un verde
+   salvia apagado. El flourish acá es la CONTENCIÓN: números grandes y
+   pálidos como motivo gráfico de fondo, en vez de cualquier efecto
+   llamativo — la restricción es lo que lo hace sentir premium/boutique. */
+
+:root {
+  color-scheme: light;
+  --ease-organic: cubic-bezier(0.25, 1, 0.5, 1);
+
+  --bg: #FBFBF9;
+  --fg: #232722;
+  --fg-muted: #6B7268;
+
+  --accent: #6F8C61;
+  --accent-fg: #FBFBF9;
+  --accent-glow: rgba(111, 140, 97, 0.16);
+
+  --card-bg: #FFFFFF;
+  --hairline: rgba(35, 39, 34, 0.08);
+  --hairline-strong: rgba(35, 39, 34, 0.22);
+
+  --bg-panel: #EDF0E9;
+  --fg-panel: #232722;
+  --fg-panel-muted: #5C6355;
+}
+
+.font-display {
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-weight: 300;
+  letter-spacing: -0.01em;
+  line-height: 1.05;
+}
+
+/* Numeral grande y pálido de fondo, motivo gráfico minimalista en vez
+   de una foto o un ícono — cada card de servicio lo trae detrás. */
+.card-index {
+  position: absolute;
+  top: -0.35em;
+  right: 0.1em;
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-weight: 300;
+  font-size: 5rem;
+  color: var(--fg);
+  opacity: 0.06;
+  pointer-events: none;
+  line-height: 1;
+}
+
+.card-minimal {
+  position: relative;
+  overflow: hidden;
+}

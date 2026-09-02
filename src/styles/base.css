@@ -1,0 +1,242 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* MECÁNICA COMPARTIDA entre los 3 estilos — todo en términos de variables
+   CSS, para que cada tema (del-sur.css / fade.css / blanco.css) solo tenga
+   que redefinir --bg/--fg/--accent/--font-* y no repetir esta lógica.
+   Cada estilo agrega ADEMÁS su propio flourish puntual (título, hover
+   único) en su propio archivo — esto de acá es solo lo estructural. */
+
+html {
+  scroll-behavior: smooth;
+}
+
+html, body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.5;
+}
+
+.eyebrow {
+  font-family: var(--font-sans), sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--fg-muted);
+}
+
+.rule {
+  display: inline-block;
+  width: 56px;
+  height: 3px;
+  background: var(--accent);
+  margin-top: 1.25rem;
+}
+
+/* CTAs ───────────────────────────────────────────────────────── */
+
+.cta-solid {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: var(--accent);
+  color: var(--accent-fg);
+  padding: 16px 32px;
+  font-family: var(--font-sans), sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition: all 0.25s ease;
+  border: 1px solid transparent;
+  overflow: hidden;
+}
+
+.cta-solid:hover {
+  filter: brightness(1.12);
+}
+
+.cta-solid::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transform: skewX(-20deg);
+  transition: left 0.6s var(--ease-organic, ease);
+  pointer-events: none;
+}
+
+.cta-solid:hover::before {
+  left: 125%;
+}
+
+.cta-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: transparent;
+  color: var(--fg);
+  padding: 16px 32px;
+  font-family: var(--font-sans), sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition: all 0.25s ease;
+  border: 1px solid var(--hairline-strong);
+}
+
+.cta-outline:hover {
+  border-color: var(--fg);
+  background: var(--fg);
+  color: var(--bg);
+}
+
+.cta-link {
+  font-family: var(--font-sans), sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--fg);
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--hairline-strong);
+  transition: all 0.25s ease;
+}
+
+.cta-link:hover {
+  border-bottom-color: var(--accent);
+  color: var(--accent);
+}
+
+/* CARDS ──────────────────────────────────────────────────────── */
+
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--hairline);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease, transform 0.25s ease;
+}
+
+.card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent), 0 0 28px var(--accent-glow);
+}
+
+.hairline { border-color: var(--hairline); }
+
+/* FOTOS — sin deformar nunca: capa de fondo desenfocada rellena los
+   bordes, la foto real va siempre completa y sin recortar encima. */
+.photo-frame {
+  position: relative;
+  overflow: hidden;
+  background: var(--card-bg);
+}
+
+.photo-frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 45%, var(--bg) 130%);
+  pointer-events: none;
+  transition: opacity 0.7s ease;
+  z-index: 1;
+  opacity: 0.55;
+}
+
+.photo-bg {
+  filter: brightness(0.92) saturate(1);
+  transition: filter 0.7s ease;
+}
+
+.photo-fg {
+  filter: brightness(0.96) contrast(1.02);
+  transition: filter 0.7s var(--ease-organic, ease), transform 0.9s var(--ease-organic, ease);
+}
+
+.photo-frame:hover .photo-bg {
+  filter: brightness(1) saturate(1.05);
+}
+
+.photo-frame:hover .photo-fg {
+  filter: brightness(1) contrast(1);
+  transform: scale(1.03);
+}
+
+.photo-frame:hover::after {
+  opacity: 0.2;
+}
+
+.divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--hairline-strong), transparent);
+}
+
+/* NAV — línea que se dibuja al pasar el cursor (misma mecánica que
+   Maccia/OG, ver bitácora en memoria [[product-web-landing]]). */
+.nav-link {
+  position: relative;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transition: transform 0.3s var(--ease-organic, ease);
+}
+
+.nav-link:hover::after,
+.nav-link:focus-visible::after {
+  transform: scaleX(1);
+}
+
+/* Reveal en scroll — visible por defecto: si el JS no corre o el
+   observer no dispara, el contenido se ve igual. */
+.reveal.armed {
+  opacity: 0;
+  transform: translateY(24px);
+}
+.reveal.armed.in {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.9s ease, transform 1s var(--ease-organic, ease);
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--accent-fg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal.armed,
+  .reveal.armed.in {
+    transition: none;
+    transform: none;
+  }
+  .photo-bg,
+  .photo-fg {
+    transition: none;
+  }
+  .photo-frame:hover .photo-fg {
+    transform: none;
+  }
+  .cta-solid::before {
+    transition: none;
+  }
+}
