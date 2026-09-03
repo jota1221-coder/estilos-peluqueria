@@ -6,14 +6,14 @@
   color-scheme: light;
   --ease-organic: cubic-bezier(0.25, 1, 0.5, 1);
 
-  --bg: #FAF8F6;
-  --bg-alt: #F1EDE9;
+  --bg: #F2EEE9;
+  --bg-alt: #E9E3DC;
   --fg: #1A1715;
   --fg-muted: #6E6560;
 
   --accent: #1A1715;
   --accent-soft: #4A423E;
-  --accent-fg: #FAF8F6;
+  --accent-fg: #F2EEE9;
   --accent-glow: rgba(26, 23, 21, 0.12);
   --sweep: rgba(255, 255, 255, 0.4);
 

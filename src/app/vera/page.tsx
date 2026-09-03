@@ -55,7 +55,7 @@ export default function Vera() {
       <DemoBar tone="light" />
 
       {/* NAV */}
-      <nav className="fixed top-9 inset-x-0 z-40 backdrop-blur-sm border-b hairline" style={{ background: "rgba(250,248,246,0.9)" }}>
+      <nav className="fixed top-9 inset-x-0 z-40 backdrop-blur-sm border-b hairline" style={{ background: "rgba(242,238,233,0.9)" }}>
         <div className="max-w-7xl mx-auto px-6 lg:px-10 h-20 flex items-center justify-between">
           <p className="font-display text-3xl tracking-[0.18em]">VERA</p>
           <div className="hidden md:flex h-full items-stretch gap-8">
@@ -83,9 +83,9 @@ export default function Vera() {
           />
           <div
             className="absolute inset-0"
-            style={{ background: "linear-gradient(90deg, rgba(250,248,246,0.97) 0%, rgba(250,248,246,0.9) 48%, rgba(250,248,246,0.5) 100%)" }}
+            style={{ background: "linear-gradient(90deg, rgba(242,238,233,0.97) 0%, rgba(242,238,233,0.9) 48%, rgba(242,238,233,0.5) 100%)" }}
           />
-          <div className="absolute inset-x-0 bottom-0 h-32" style={{ background: "linear-gradient(180deg, transparent, #FAF8F6)" }} />
+          <div className="absolute inset-x-0 bottom-0 h-32" style={{ background: "linear-gradient(180deg, transparent, #F2EEE9)" }} />
         </div>
         <div className="max-w-7xl mx-auto px-6 lg:px-10 relative z-10 grid lg:grid-cols-12 gap-14 items-center">
           <Reveal className="lg:col-span-7">
