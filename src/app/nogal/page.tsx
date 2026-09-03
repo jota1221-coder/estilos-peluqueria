@@ -25,6 +25,29 @@ const RESEÑAS = [
   { nombre: "Nicolás B.", texto: "Ambiente prolijo y buena onda del equipo. Se nota el oficio." },
 ];
 
+// Isologo — tijera geométrica en el acento, misma idea que el wordmark
+// con ícono de Maccia: el nombre solo no alcanza para leerse como marca.
+function NogalMark({ size = 40 }: { size?: number }) {
+  return (
+    <span className="group flex items-center gap-2.5">
+      <svg
+        width={size * 0.62}
+        height={size * 0.62}
+        viewBox="0 0 24 24"
+        fill="none"
+        className="shrink-0 transition-transform duration-300 group-hover:-rotate-12"
+      >
+        <circle cx="6" cy="6" r="2.4" stroke="var(--accent)" strokeWidth="1.4" />
+        <circle cx="6" cy="18" r="2.4" stroke="var(--accent)" strokeWidth="1.4" />
+        <path d="M8 7.3L20 17.2M8 16.7L20 6.8" stroke="var(--accent)" strokeWidth="1.4" strokeLinecap="round" />
+      </svg>
+      <span className="font-logo" style={{ fontSize: `${size * 0.5}px`, color: "var(--accent)" }}>
+        Nogal
+      </span>
+    </span>
+  );
+}
+
 export default function Nogal() {
   return (
     <main>
@@ -33,7 +56,7 @@ export default function Nogal() {
       {/* NAV */}
       <nav className="fixed top-9 inset-x-0 z-40 backdrop-blur-sm border-b hairline" style={{ background: "rgba(12,10,8,0.85)" }}>
         <div className="max-w-7xl mx-auto px-6 lg:px-10 h-20 flex items-center justify-between">
-          <p className="font-display text-2xl">Nogal</p>
+          <NogalMark size={34} />
           <div className="hidden md:flex h-full items-stretch gap-8">
             <a href="#servicios" className="nav-link flex items-center">Servicios</a>
             <a href="#equipo" className="nav-link flex items-center">Equipo</a>
@@ -66,14 +89,18 @@ export default function Nogal() {
         <div className="max-w-7xl mx-auto px-6 lg:px-10 relative z-10 grid lg:grid-cols-12 gap-14 items-center">
           <Reveal className="lg:col-span-7">
             <p className="eyebrow mb-6">Peluquería &amp; Barbería · Martínez</p>
-            <h1 className="font-display text-5xl lg:text-7xl leading-[1.02]">
-              El oficio,<br /><span className="accent">bien hecho</span>.
+            <h1 className="font-brand text-5xl lg:text-7xl leading-[0.95]">
+              Nogal<br /><span className="accent">Barbería</span>
             </h1>
             <span className="rule" />
             <p className="mt-8 text-lg max-w-xl" style={{ color: "var(--fg-muted)" }}>
               Corte, barba y color en un lugar donde el tiempo se toma en serio.
               Con academia propia para el que quiere aprender el oficio.
             </p>
+            <div className="mt-6 flex items-center gap-3">
+              <span className="accent text-xl tracking-widest">★★★★★</span>
+              <span className="text-sm" style={{ color: "var(--fg-muted)" }}>4.9 · reseñas de ejemplo</span>
+            </div>
             <div className="mt-10 flex flex-wrap gap-4">
               <a href="#ubicacion" className="cta-solid">Reservar turno</a>
               <a href="#servicios" className="cta-outline">Ver servicios</a>
@@ -255,7 +282,7 @@ export default function Nogal() {
       <footer className="border-t hairline pt-20 pb-10">
         <div className="max-w-7xl mx-auto px-6 lg:px-10 grid md:grid-cols-3 gap-12">
           <div>
-            <p className="font-display text-2xl">Nogal</p>
+            <NogalMark size={38} />
             <p className="mt-6 leading-relaxed" style={{ color: "var(--fg-muted)" }}>
               Peluquería, barbería y academia. Ejemplo de estilo.
             </p>

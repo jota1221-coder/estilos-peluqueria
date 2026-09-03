@@ -24,7 +24,7 @@
 
   --photo-veil: rgba(8, 8, 8, 0.92);
   --photo-filter: grayscale(1) brightness(0.92) contrast(1.05);
-  --photo-filter-hover: grayscale(1) brightness(1.05) contrast(1.1);
+  --photo-filter-hover: grayscale(0) brightness(1.02) contrast(1.05);
 }
 
 .font-display {

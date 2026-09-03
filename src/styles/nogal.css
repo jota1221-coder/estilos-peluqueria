@@ -34,6 +34,31 @@
   line-height: 1.05;
 }
 
+/* Cara del header (logo + nav + título del hero) — Cormorant, un serif
+   fino y ornamentado, distinto del Fraunces de los títulos de sección.
+   Misma idea que Maccia: el wordmark tiene su propia tipografía. */
+.font-brand {
+  font-family: var(--font-header), Georgia, serif;
+  font-weight: 600;
+  letter-spacing: 0;
+  line-height: 1.02;
+}
+
+.font-logo {
+  font-family: var(--font-header), Georgia, serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  line-height: 1;
+}
+
+.nav-link {
+  font-family: var(--font-header), Georgia, serif;
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.18em;
+}
+
 /* Halo dorado difuso — se usa detrás del cierre, mismo recurso que Maccia. */
 .glow-accent {
   position: absolute;

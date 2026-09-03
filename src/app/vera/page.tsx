@@ -7,10 +7,34 @@ import { autorWhatsApp } from "@/lib/autor";
 const CONTACTO = autorWhatsApp("Vera — blanco y negro elegante");
 
 const SERVICIOS = [
-  { nombre: "Corte y estilo", desc: "Lectura de rostro y textura, no un corte de catálogo.", img: "/fotos/vera/serv-1.jpg", pos: "center 35%" },
-  { nombre: "Color y mechas", desc: "Balayage, iluminaciones y matices a medida.", img: "/fotos/vera/serv-2.jpg", pos: "center 30%" },
-  { nombre: "Color creativo", desc: "Fantasía y decoloración, con el pelo cuidado.", img: "/fotos/vera/serv-3.jpg", pos: "center 30%" },
-  { nombre: "Tratamientos", desc: "Nutrición, botox capilar y alisados sin daño.", img: "/fotos/vera/serv-4.jpg", pos: "center" },
+  {
+    nombre: "Corte y estilo",
+    desc: "Lectura de rostro y textura, no un corte de catálogo.",
+    descLarga: "Antes de cortar, charla corta: qué tenés, qué buscás y cómo lo vas a mantener en casa. El corte sale de tu rostro y tu textura, no de una foto de Instagram.",
+    img: "/fotos/vera/serv-1.jpg",
+    pos: "center 35%",
+  },
+  {
+    nombre: "Color y mechas",
+    desc: "Balayage, iluminaciones y matices a medida.",
+    descLarga: "Balayage, iluminaciones y matices pensados para tu base natural. El objetivo es que el color crezca bien y no pida retoque cada tres semanas.",
+    img: "/fotos/vera/serv-2.jpg",
+    pos: "center 30%",
+  },
+  {
+    nombre: "Color creativo",
+    desc: "Fantasía y decoloración, con el pelo cuidado.",
+    descLarga: "Fantasía, decoloración y tonos poco comunes, con un plan de cuidado para que el proceso no te queme el pelo. Se hace en etapas, nunca todo el mismo día.",
+    img: "/fotos/vera/serv-3.jpg",
+    pos: "center 30%",
+  },
+  {
+    nombre: "Tratamientos",
+    desc: "Nutrición, botox capilar y alisados sin daño.",
+    descLarga: "Nutrición profunda, botox capilar y alisados sin formol. Pensados para sumar brillo y manejo real, no para tapar un daño que sigue ahí abajo.",
+    img: "/fotos/vera/serv-4.jpg",
+    pos: "center",
+  },
 ];
 
 const EQUIPO = [
@@ -87,7 +111,7 @@ export default function Vera() {
 
       <div className="divider max-w-7xl mx-auto" />
 
-      {/* SERVICIOS */}
+      {/* SERVICIOS — filas alternadas foto/texto a pantalla completa */}
       <section id="servicios" className="py-28">
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
           <Reveal>
@@ -96,20 +120,36 @@ export default function Vera() {
               Lo que hacemos, <span className="italic">bien</span>.
             </h2>
           </Reveal>
-          <div className="mt-14 grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {SERVICIOS.map((s, i) => (
-              <Reveal key={s.nombre} delay={i * 80}>
-                <div className="card h-full overflow-hidden">
-                  <FramedPhoto src={s.img} alt={s.nombre} aspect="aspect-[4/3]" className="!border-0" position={s.pos} />
-                  <div className="p-7">
-                    <p className="font-display text-2xl">{s.nombre}</p>
-                    <p className="mt-2 text-sm leading-relaxed" style={{ color: "var(--fg-muted)" }}>{s.desc}</p>
+        </div>
+
+        <div className="mt-14">
+          {SERVICIOS.map((s, i) => {
+            const reversed = i % 2 === 1;
+            return (
+              <Reveal key={s.nombre}>
+                <div className="grid lg:grid-cols-2 items-stretch border-t hairline">
+                  <div className={`relative aspect-[4/5] lg:aspect-auto order-2 ${reversed ? "lg:order-2" : "lg:order-1"}`}>
+                    <FramedPhoto src={s.img} alt={s.nombre} aspect="h-full w-full" className="!border-0" position={s.pos} />
+                  </div>
+                  <div className={`flex items-center px-6 lg:px-16 py-14 lg:py-20 order-1 ${reversed ? "lg:order-1" : "lg:order-2"}`}>
+                    <div className="max-w-md">
+                      <h3 className="font-display text-4xl lg:text-6xl uppercase leading-[0.95] mb-6">
+                        {s.nombre}
+                      </h3>
+                      <p className="leading-relaxed text-lg" style={{ color: "var(--fg-muted)" }}>{s.descLarga}</p>
+                      <a href={CONTACTO} target="_blank" rel="noopener" className="cta-link inline-block mt-8">
+                        Consultar por WhatsApp →
+                      </a>
+                    </div>
                   </div>
                 </div>
               </Reveal>
-            ))}
-          </div>
-          <p className="mt-8 text-sm italic" style={{ color: "var(--fg-muted)" }}>Consultanos precios por WhatsApp.</p>
+            );
+          })}
+        </div>
+
+        <div className="max-w-7xl mx-auto px-6 lg:px-10">
+          <p className="mt-14 text-sm italic" style={{ color: "var(--fg-muted)" }}>Consultanos precios por WhatsApp.</p>
         </div>
       </section>
 
