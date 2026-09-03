@@ -10,7 +10,7 @@ const ESTILOS = [
     desc: "Foto de fondo, serif con carácter y un dorado que aparece solo donde importa.",
     img: "/fotos/nogal/hero-bg.jpg",
     filtro: "brightness(0.55) saturate(0.95)",
-    accent: "#C9A227",
+    accent: "#D2924F",
   },
   {
     href: "/vera",
@@ -66,7 +66,7 @@ export default function Gallery() {
                 <div className="absolute inset-x-0 bottom-0 p-6">
                   <span
                     className="inline-block text-[10px] font-bold tracking-[0.2em] uppercase px-2 py-1"
-                    style={{ background: e.accent, color: e.accent === "#C9A227" ? "#14100C" : "#111" }}
+                    style={{ background: e.accent, color: e.accent === "#D2924F" ? "#0C0A08" : "#111" }}
                   >
                     {e.etiqueta}
                   </span>

@@ -11,10 +11,10 @@
   --fg: #F5F0E8;
   --fg-muted: #A99C8B;
 
-  --accent: #C9A227;
-  --accent-soft: #E2C55E;
-  --accent-fg: #14100C;
-  --accent-glow: rgba(201, 162, 39, 0.18);
+  --accent: #D2924F;
+  --accent-soft: #E3B482;
+  --accent-fg: #0C0A08;
+  --accent-glow: rgba(210, 146, 79, 0.18);
   --sweep: rgba(255, 255, 255, 0.35);
 
   --card-bg: #16120D;
@@ -68,7 +68,7 @@
   width: 700px;
   height: 700px;
   border-radius: 9999px;
-  background: rgba(201, 162, 39, 0.10);
+  background: rgba(210, 146, 79, 0.10);
   filter: blur(120px);
   pointer-events: none;
 }
